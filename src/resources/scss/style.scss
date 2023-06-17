@@ -1,3 +1,211 @@
-.main {
-    color: #fff;
+@import './reset';
+
+body {
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    background: radial-gradient(
+            50% 123.47% at 50% 50%,
+            #00ff94 0%,
+            #720059 100%
+        ),
+        linear-gradient(121.28deg, #669600 0%, #ff0000 100%),
+        linear-gradient(360deg, #0029ff 0%, #8fff00 100%),
+        radial-gradient(100% 164.72% at 100% 100%, #6100ff 0%, #00ff57 100%),
+        radial-gradient(100% 148.07% at 0% 0%, #fff500 0%, #51d500 100%);
+    background-blend-mode: screen, color-dodge, overlay, difference, normal;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.card {
+    margin-top: 40px;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px 48px 48px 48px;
+
+    .logo {
+        text-align: center;
+        color: #54b4d3;
+        font-size: 40px;
+        font-weight: 500;
+        line-height: 48px;
+        background: -webkit-linear-gradient(60deg, #00f260, #0575e6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 16px;
+    }
+
+    .form {
+        padding: 0 40px;
+        display: flex;
+        justify-content: center;
+        gap: 0 10px;
+    }
+
+    .form-field {
+        width: 70%;
+        position: relative;
+        margin-bottom: 20px;
+
+        .form-input {
+            border: 1px solid #eee;
+            border-radius: 4px;
+            width: 100%;
+            padding: 0 20px;
+            height: 40px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-size: 15px;
+
+            &:focus {
+                border-color: #54b4d3;
+            }
+        }
+
+        .form-label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 22px;
+            user-select: none;
+            color: #999;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .form-input:not(:placeholder-shown) + .form-label,
+        .form-input:focus + .form-label {
+            top: 0;
+            display: inline-block;
+            padding: 6px 10px;
+            background-color: #fff;
+            left: 26px;
+            color: #54b4d3;
+        }
+    }
+
+    .form-btn {
+        width: auto;
+    }
+
+    .btn {
+        border: none;
+        padding: 12px 28px;
+        display: inline-block;
+        cursor: pointer;
+        border-radius: 4px;
+        color: #fff;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        &-add {
+            background-color: #54b4d3;
+        }
+    }
+}
+
+.tabs {
+    margin-left: 40px;
+    position: relative;
+
+    .tab-item {
+        display: inline-block;
+        text-transform: uppercase;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 16px;
+        font-weight: 500;
+        color: rgba($color: #54b4d3, $alpha: 0.6);
+        position: relative;
+
+        &:hover {
+            color: #54b4d3;
+        }
+
+        &.active {
+            color: #54b4d3 !important;
+        }
+    }
+
+    .line {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 0;
+        background-color: rgba($color: #54b4d3, $alpha: 1);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+}
+
+.tab-container {
+    margin-top: 20px;
+}
+
+.tab-content {
+    margin-top: 24px;
+    .tab-pane {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+}
+
+.list-task {
+    li {
+        list-style: none;
+        border-radius: 4px;
+        margin: 0px 0px 8px;
+        padding: 12px 24px 12px calc(24px + 16px);
+        font-size: 16px;
+        background-color: #f4f6f7;
+        color: #555;
+        cursor: pointer;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            border: 1px solid #54b4d3;
+            border-radius: 50%;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background-color: #54b4d3;
+            border-radius: 50%;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        &.completed::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        &.completed {
+            text-decoration: line-through;
+            color: #ccc;
+        }
+    }
 }
