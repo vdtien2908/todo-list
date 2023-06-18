@@ -1,4 +1,5 @@
 @import './reset';
+@import './toast';
 
 body {
     font-size: 14px;
@@ -13,6 +14,10 @@ body {
         radial-gradient(100% 164.72% at 100% 100%, #6100ff 0%, #00ff57 100%),
         radial-gradient(100% 148.07% at 0% 0%, #fff500 0%, #51d500 100%);
     background-blend-mode: screen, color-dodge, overlay, difference, normal;
+}
+
+.wrapper {
+    position: relative;
 }
 
 .container {
@@ -112,6 +117,7 @@ body {
 .tabs {
     margin-left: 40px;
     position: relative;
+    user-select: none;
 
     .tab-item {
         display: inline-block;
@@ -161,7 +167,7 @@ body {
 }
 
 .list-task {
-    li {
+    .task {
         list-style: none;
         border-radius: 4px;
         margin: 0px 0px 8px;
@@ -171,6 +177,18 @@ body {
         color: #555;
         cursor: pointer;
         position: relative;
+        user-select: none;
+        display: flex;
+        justify-content: space-between;
+
+        span {
+            transition: all 0.3 ease;
+
+            i {
+                color: #ff0000;
+                font-size: 18px;
+            }
+        }
 
         &::after {
             content: '';

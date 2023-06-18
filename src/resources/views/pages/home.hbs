@@ -5,41 +5,39 @@
                 <i class='fa-solid fa-circle-check'></i>
                 <u>My Todo-s</u>
             </p>
-            <div class='form'>
+            <form class='form' id='form'>
                 <div class='form-field'>
-                    <input class='form-input' type='text' placeholder=' ' />
+                    <input
+                        id='task'
+                        class='form-input'
+                        type='text'
+                        placeholder=' '
+                    />
                     <label class='form-label' for=''>New task...</label>
                 </div>
                 <div class='form-btn'>
-                    <button class='btn btn-add'>ADD</button>
+                    <button id='submit' class='btn btn-add'>ADD</button>
                 </div>
-            </div>
+            </form>
             <div class='tab-container'>
                 {{! Tab item }}
                 <div class='tabs'>
                     <div class='tab-item active'>All</div>
                     <div class='tab-item'>Working</div>
-                    <div class='tab-item'>CompleteD</div>
+                    <div class='tab-item'>Completed</div>
                     <div class='line'></div>
                 </div>
 
                 {{! Tab content }}
                 <div class='tab-content'>
                     <div class='tab-pane active'>
-                        <ul class='list-task'>
-                            <li>Làm việc nhà</li>
-                            <li class='completed'>Học lập trình</li>
-                        </ul>
+                        <ul class='list-task' id='all'> </ul>
                     </div>
                     <div class='tab-pane'>
-                        <ul class='list-task'>
-                            <li>Làm việc nhà</li>
-                        </ul>
+                        <ul class='list-task' id='working'></ul>
                     </div>
                     <div class='tab-pane'>
-                        <ul class='list-task'>
-                            <li class='completed'>Học lập trình</li>
-                        </ul>
+                        <ul class='list-task' id='completed'></ul>
                     </div>
                 </div>
             </div>
