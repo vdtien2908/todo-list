@@ -83,6 +83,7 @@ const app = {
     async handleLoadData() {
         const _this = this;
         const rootAll = document.querySelector('#all');
+        const rootParent = rootAll.parentElement.parentElement;
         const rootWorking = document.querySelector('#working');
         const rootCompleted = document.querySelector('#completed');
         const inputElement = document.querySelector('#task');
@@ -95,11 +96,12 @@ const app = {
             delete: 'http://localhost:3321/task/delete/',
         };
 
-        // Call controller get data
+        // Call controller get data: [GET] /task
         const response = await fetch(url.index);
         const data = await response.json();
         const tasks = data.data;
 
+        // Function render task
         function renderDomElement(task, index) {
             let element = `
             <li 
@@ -112,7 +114,7 @@ const app = {
             return element;
         }
 
-        // Function render data
+        // Function render all tasks
         function render(element, data, type = 'all') {
             let html = [];
             data.forEach((task, index) => {
@@ -150,6 +152,19 @@ const app = {
         async function handleSubmit(event) {
             event.preventDefault();
             const value = inputElement.value;
+            console.log(event.target.dataset.type);
+
+            if (value === '') {
+                const optionNotification = {
+                    title: 'Please enter data!!',
+                    message: `Please enter enough data to create a job`,
+                    type: 'waning',
+                    duration: 3000,
+                };
+
+                _this.toast(optionNotification);
+                return;
+            }
             let options = {
                 method: 'POST',
                 headers: {
@@ -162,11 +177,11 @@ const app = {
             const data = await response.json();
             const task = data.data;
             inputElement.value = '';
-            const taskElement = renderDomElement(task);
+            tasks.push(task);
             // Task all
-            rootAll.insertAdjacentHTML('beforeend', taskElement);
+            render(rootAll, tasks);
             // Task working
-            rootWorking.insertAdjacentHTML('beforeend', taskElement);
+            render(rootWorking, tasks, 'working');
             // Notification
             const optionNotification = {
                 title: 'Success',
@@ -178,14 +193,8 @@ const app = {
             _this.toast(optionNotification);
         }
 
-        // Render all data
-        renderAll();
-
-        // Add task
-        elementSubmit.addEventListener('submit', handleSubmit);
-
-        const root = rootAll.parentElement.parentElement;
-        root.onclick = async (event) => {
+        // Function handleClickTask
+        async function handleClick(event) {
             if (event.target.closest('li')) {
                 if (event.target.closest('span')) {
                     let index = event.target.dataset.id;
@@ -193,14 +202,13 @@ const app = {
                     let id = tasks[index].id;
                     tasks.splice(index, 1);
 
-                    console.log(id);
                     await fetch(url.delete + `${id}`);
 
                     const optionNotification = {
                         title: 'Delete successfully!!',
                         message: `Task "${title}" delete successfully`,
                         type: 'error',
-                        duration: 5000,
+                        duration: 3000,
                     };
 
                     _this.toast(optionNotification);
@@ -208,7 +216,6 @@ const app = {
                     renderAll();
                     return;
                 }
-                console.log();
 
                 // Handle status completed
                 event.target.classList.toggle('completed');
@@ -232,7 +239,7 @@ const app = {
                         title: 'Congratulations on your job!',
                         message: `Task "${tasks[index].title}" is completed`,
                         type: 'success',
-                        duration: 5000,
+                        duration: 3000,
                     };
 
                     _this.toast(optionNotification);
@@ -241,14 +248,22 @@ const app = {
                         title: 'Successful recovery!',
                         message: `Task "${tasks[index].title}" successfully restored`,
                         type: 'info',
-                        duration: 5000,
+                        duration: 3000,
                     };
 
                     _this.toast(optionNotification);
                 }
                 renderAll();
             }
-        };
+        }
+
+        // Render all data
+        renderAll();
+
+        // Add task
+        elementSubmit.addEventListener('submit', handleSubmit);
+        // Handle click task
+        rootParent.addEventListener('click', handleClick);
     },
 
     // Run func

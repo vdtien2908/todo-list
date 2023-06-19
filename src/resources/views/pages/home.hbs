@@ -5,7 +5,7 @@
                 <i class='fa-solid fa-circle-check'></i>
                 <u>My Todo-s</u>
             </p>
-            <form class='form' id='form'>
+            <form class='form' id='form' data-type='add'>
                 <div class='form-field'>
                     <input
                         id='task'
@@ -16,7 +16,11 @@
                     <label class='form-label' for=''>New task...</label>
                 </div>
                 <div class='form-btn'>
-                    <button id='submit' class='btn btn-add'>ADD</button>
+                    <button id='btn-add' class='btn btn-add'>Add</button>
+                    <button
+                        id='btn-cancel'
+                        class='btn btn-cancel'
+                    >Cancel</button>
                 </div>
             </form>
             <div class='tab-container'>

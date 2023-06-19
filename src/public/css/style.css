@@ -316,6 +316,10 @@ body {
 .card .btn-add {
   background-color: #54b4d3;
 }
+.card .btn-cancel {
+  background-color: rgba(85, 85, 85, 0.5);
+  display: none;
+}
 
 .tabs {
   margin-left: 40px;
@@ -384,6 +388,15 @@ body {
 .list-task .task span i {
   color: #ff0000;
   font-size: 18px;
+}
+.list-task .task .fa-pen {
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 8px;
+  color: #555 !important;
+  z-index: 10;
 }
 .list-task .task::after {
   content: "";
