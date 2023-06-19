@@ -1,0 +1,50 @@
+<div class='container'>
+    <div class='card'>
+        <div class='card_body'>
+            <p class='logo'>
+                <i class='fa-solid fa-circle-check'></i>
+                <u>My Todo-s</u>
+            </p>
+            <form class='form' id='form' data-type='add'>
+                <div class='form-field'>
+                    <input
+                        id='task'
+                        class='form-input'
+                        type='text'
+                        placeholder=' '
+                    />
+                    <label class='form-label' for=''>New task...</label>
+                </div>
+                <div class='form-btn'>
+                    <button id='btn-add' class='btn btn-add'>Add</button>
+                    <button
+                        id='btn-cancel'
+                        class='btn btn-cancel'
+                    >Cancel</button>
+                </div>
+            </form>
+            <div class='tab-container'>
+                {{! Tab item }}
+                <div class='tabs'>
+                    <div class='tab-item active'>All</div>
+                    <div class='tab-item'>Working</div>
+                    <div class='tab-item'>Completed</div>
+                    <div class='line'></div>
+                </div>
+
+                {{! Tab content }}
+                <div class='tab-content'>
+                    <div class='tab-pane active'>
+                        <ul class='list-task' id='all'> </ul>
+                    </div>
+                    <div class='tab-pane'>
+                        <ul class='list-task' id='working'></ul>
+                    </div>
+                    <div class='tab-pane'>
+                        <ul class='list-task' id='completed'></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
